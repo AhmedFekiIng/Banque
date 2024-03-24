@@ -1,5 +1,6 @@
 package com.example.testmobile
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,10 +28,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.data.Bank
+import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 @Composable
-fun AccountsListScreen(viewModel: AccountsListViewModel, navController: NavController) {
+fun AccountsListScreen(navController: NavController, viewModel: AccountsListViewModel = viewModel()) {
     val banks = viewModel.bankAccounts.value
+    Log.d("Loggg AccountsListScreen", "Number of banks: ${banks.size}")
+
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -64,6 +69,7 @@ fun AccountsListScreen(viewModel: AccountsListViewModel, navController: NavContr
 @Composable
 fun BankItem(bank: Bank, navController: NavController) {
     val expanded = remember { mutableStateOf(false) }
+    Log.d("Loggg BankItem", "Bank name: ${bank.name}")
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -103,6 +109,7 @@ fun BankItem(bank: Bank, navController: NavController) {
 
 @Composable
 fun BankAccountItem(account: com.example.data.BankAccount, navController: NavController) {
+    Log.d("Loggg BankAccountItem", "Account label: ${account.label}")
     Card(
         modifier = Modifier
             .fillMaxWidth()

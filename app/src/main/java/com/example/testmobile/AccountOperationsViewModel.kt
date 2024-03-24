@@ -3,11 +3,15 @@ package com.example.testmobile
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.data.createApiService
 import com.example.domain.GetAccountOperationsUseCase
-import com.example.data.Operation
+import com.example.domain.GetAccountOperationsUseCaseImpl
+import com.example.domain.data.BankRepository
 import kotlinx.coroutines.launch
 
 class AccountOperationsViewModel(private val getAccountOperationsUseCase: GetAccountOperationsUseCase) : ViewModel() {
+
+    constructor() : this(GetAccountOperationsUseCaseImpl(BankRepository(createApiService())))
 
     val accountOperations = mutableStateOf<List<com.example.data.Operation>>(emptyList())
 

@@ -25,6 +25,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.data.Operation
 import com.example.testmobile.theme.BankAppTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 class AccountOperationsFragment(private val accountId: String) : Fragment() {
     private val viewModel: AccountOperationsViewModel by viewModels()
@@ -45,7 +47,7 @@ class AccountOperationsFragment(private val accountId: String) : Fragment() {
 }
 
 @Composable
-fun AccountOperationsScreen(accountId: String, viewModel: AccountOperationsViewModel) {
+fun AccountOperationsScreen(accountId: String, viewModel: AccountOperationsViewModel = viewModel()) {
     viewModel.fetchAccountOperations(accountId)
     val accountOperations = viewModel.accountOperations
 
